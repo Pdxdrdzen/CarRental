@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" alignment="CENTER"
+      style="-fx-padding: 40; -fx-background-color: #f4f4f4;"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.carrental.gui.LoginController">
+
+    <Label text="CarRental System"
+           style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+
+    <TextField fx:id="emailField" promptText="Email"
+               prefWidth="250"/>
+
+    <PasswordField fx:id="passwordField" promptText="Hasło"
+                   prefWidth="250"/>
+
+    <Label fx:id="errorLabel"
+           style="-fx-text-fill: red;"/>
+
+    <Button text="Zaloguj" onAction="#handleLogin"
+            prefWidth="250"
+            style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+</VBox>
