@@ -17,16 +17,26 @@ public class LoginController {
         String email = emailField.getText();
         String password = passwordField.getText();
 
+        if(email.isEmpty()||password.isEmpty()){
+            errorLabel.setText("Wypelnij wszystkie pola!");
+            return;
+        }
         // temp hardcoded login(should be http request from spring)
         if (email.equals("admin@car.pl") && password.equals("admin")) {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/fxml/vehicles.fxml")
-            );
-            Stage stage = (Stage) emailField.getScene().getWindow();
-            stage.setScene(new Scene(loader.load(), 800, 600));
-            stage.setTitle("Lista pojazdów");
+            try {
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/fxml/vehicles.fxml")
+                );
+                Stage stage = (Stage) emailField.getScene().getWindow();
+                stage.setScene(new Scene(loader.load(), 900, 600));
+                stage.setTitle("Lista pojazdów");
+            }catch (Exception e) {
+                errorLabel.setText("Error ladowania ekranu");
+                e.printStackTrace();
+            }
         } else {
             errorLabel.setText("Nieprawidłowy email lub hasło");
+            passwordField.clear();
         }
     }
 }
