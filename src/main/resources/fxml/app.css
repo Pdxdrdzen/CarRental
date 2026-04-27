@@ -1,0 +1,238 @@
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-background-color: #05070b;
+}
+
+.wall-bg {
+    -fx-background-image:
+        linear-gradient(to bottom, rgba(6,8,13,0.82), rgba(6,8,13,0.90)),
+        url("images/tlo.jpg");
+    -fx-background-size: cover, cover;
+    -fx-background-position: center center, center center;
+    -fx-background-repeat: no-repeat, no-repeat;
+}
+
+.surface-wrap {
+    -fx-background-color: rgba(6, 9, 15, 0.66);
+    -fx-background-radius: 26;
+}
+
+.top-bar {
+    -fx-background-color: rgba(10, 14, 22, 0.88);
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-border-color: rgba(72, 227, 255, 0.30);
+    -fx-border-width: 1.8;
+    -fx-effect: dropshadow(gaussian, rgba(72,227,255,0.16), 18, 0.22, 0, 0);
+}
+
+.main-card {
+    -fx-background-color: rgba(11, 16, 25, 0.88);
+    -fx-background-radius: 22;
+    -fx-border-radius: 22;
+    -fx-border-color: rgba(72, 227, 255, 0.30);
+    -fx-border-width: 1.8;
+    -fx-effect: dropshadow(gaussian, rgba(72,227,255,0.14), 18, 0.22, 0, 0);
+}
+
+.side-card {
+    -fx-background-color: rgba(11, 16, 25, 0.86);
+    -fx-background-radius: 22;
+    -fx-border-radius: 22;
+    -fx-border-color: rgba(255, 92, 210, 0.24);
+    -fx-border-width: 1.8;
+    -fx-effect: dropshadow(gaussian, rgba(255,92,210,0.12), 18, 0.2, 0, 0);
+}
+
+.metric-card {
+    -fx-background-color: rgba(13, 18, 28, 0.90);
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-width: 1.2;
+}
+
+.brand-label {
+    -fx-text-fill: #f3fbff;
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+}
+
+.badge-label {
+    -fx-background-color: rgba(72, 227, 255, 0.12);
+    -fx-text-fill: #96f7ff;
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+    -fx-border-color: rgba(72, 227, 255, 0.34);
+    -fx-border-width: 1.4;
+    -fx-padding: 8 14 8 14;
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+}
+
+.page-title {
+    -fx-text-fill: #f5fbff;
+    -fx-font-size: 28px;
+    -fx-font-weight: 800;
+}
+
+.section-title {
+    -fx-text-fill: #f3fbff;
+    -fx-font-size: 21px;
+    -fx-font-weight: 800;
+}
+
+.neon-cyan {
+    -fx-text-fill: #91f8ff;
+    -fx-effect: dropshadow(gaussian, rgba(72,227,255,0.50), 18, 0.28, 0, 0);
+}
+
+.neon-pink {
+    -fx-text-fill: #ff9ceb;
+    -fx-effect: dropshadow(gaussian, rgba(255,92,210,0.42), 18, 0.28, 0, 0);
+}
+
+.body-text {
+    -fx-text-fill: #e3edf7;
+    -fx-font-size: 14px;
+}
+
+.soft-text,
+.info-text,
+.subtitle {
+    -fx-text-fill: #c8d7e8;
+    -fx-font-size: 13px;
+}
+
+.field-label {
+    -fx-text-fill: #eef7ff;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+.neon-input {
+    -fx-background-color: rgba(13, 18, 28, 0.96);
+    -fx-text-fill: #f7fbff;
+    -fx-prompt-text-fill: #95a9bc;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-border-color: rgba(72, 227, 255, 0.24);
+    -fx-border-width: 1.6;
+    -fx-padding: 0 14 0 14;
+    -fx-font-size: 14px;
+}
+
+.neon-input:focused {
+    -fx-border-color: rgba(72, 227, 255, 0.60);
+    -fx-effect: dropshadow(gaussian, rgba(72,227,255,0.24), 18, 0.24, 0, 0);
+}
+
+.neon-button {
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-font-size: 13px;
+    -fx-font-weight: 800;
+    -fx-padding: 12 16 12 16;
+    -fx-cursor: hand;
+}
+
+.primary-button {
+    -fx-background-color: rgba(11, 18, 27, 0.98);
+    -fx-text-fill: #92f7ff;
+    -fx-border-color: rgba(72, 227, 255, 0.58);
+    -fx-border-width: 2.0;
+    -fx-effect: dropshadow(gaussian, rgba(72,227,255,0.24), 18, 0.28, 0, 0);
+}
+
+.secondary-button {
+    -fx-background-color: rgba(13, 18, 28, 0.98);
+    -fx-text-fill: #ff9ceb;
+    -fx-border-color: rgba(255, 92, 210, 0.54);
+    -fx-border-width: 2.0;
+    -fx-effect: dropshadow(gaussian, rgba(255,92,210,0.22), 18, 0.28, 0, 0);
+}
+
+.ghost-button {
+    -fx-background-color: rgba(12, 17, 26, 0.96);
+    -fx-text-fill: #edf6ff;
+    -fx-border-color: rgba(255,255,255,0.18);
+    -fx-border-width: 1.7;
+}
+
+.hyperlink {
+    -fx-text-fill: #9cf7ff;
+    -fx-border-color: transparent;
+}
+
+.list-chip {
+    -fx-background-color: rgba(255,255,255,0.05);
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-padding: 8 12 8 12;
+    -fx-text-fill: #edf5ff;
+}
+
+.car-card {
+    -fx-background-color: rgba(13, 18, 28, 0.94);
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: rgba(72, 227, 255, 0.34);
+    -fx-border-width: 1.9;
+    -fx-effect: dropshadow(gaussian, rgba(72,227,255,0.16), 18, 0.24, 0, 0);
+}
+
+.price-text {
+    -fx-text-fill: #ff9ceb;
+    -fx-font-size: 17px;
+    -fx-font-weight: 800;
+    -fx-effect: dropshadow(gaussian, rgba(255,92,210,0.28), 14, 0.22, 0, 0);
+}
+
+.metric-number {
+    -fx-font-size: 28px;
+    -fx-font-weight: 800;
+}
+
+.table-box {
+    -fx-background-color: rgba(10, 15, 24, 0.88);
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: rgba(72, 227, 255, 0.26);
+    -fx-border-width: 1.8;
+}
+
+.neon-table {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.neon-table .column-header-background {
+    -fx-background-color: rgba(72, 227, 255, 0.10);
+    -fx-background-radius: 16 16 0 0;
+}
+
+.neon-table .column-header,
+.neon-table .filler {
+    -fx-background-color: transparent;
+}
+
+.neon-table .label {
+    -fx-text-fill: #eef7ff;
+    -fx-font-weight: 700;
+}
+
+.separator .line {
+    -fx-border-color: rgba(255,255,255,0.10);
+}
+
+.transparent-scroll,
+.transparent-scroll > .viewport,
+.transparent-scroll > .corner {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.tile-pane {
+    -fx-background-color: transparent;
+}

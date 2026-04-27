@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="820.0" prefWidth="1280.0" styleClass="wall-bg" stylesheets="@app.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <BorderPane styleClass="surface-wrap" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="22.0">
+      <top>
+        <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="top-bar">
+          <padding>
+            <Insets bottom="16.0" left="24.0" right="24.0" top="16.0" />
+          </padding>
+          <children>
+            <Label styleClass="badge-label" text="Wypożyczalnia samochodów" />
+            <Label styleClass="section-title neon-cyan" text="Panel użytkownika" textFill="WHITE" />
+            <Region HBox.hgrow="ALWAYS" />
+            <TextField fx:id="searchField" prefHeight="40.0" prefWidth="250.0" promptText="Szukaj pojazdu..." styleClass="neon-input" />
+            <Button mnemonicParsing="false" styleClass="neon-button ghost-button" text="Moje rezerwacje" />
+            <Button mnemonicParsing="false" styleClass="neon-button secondary-button" text="Wyloguj" />
+          </children>
+        </HBox>
+      </top>
+      <left>
+        <VBox prefWidth="260.0" spacing="14.0" styleClass="side-card" BorderPane.alignment="TOP_LEFT">
+          <padding>
+            <Insets bottom="22.0" left="22.0" right="22.0" top="22.0" />
+          </padding>
+          <children>
+            <Label styleClass="section-title neon-pink" text="Filtry" textFill="WHITE" />
+            <Label styleClass="field-label" text="Marka" />
+            <TextField prefHeight="40.0" promptText="np. Toyota" styleClass="neon-input" />
+            <Label styleClass="field-label" text="Typ paliwa" />
+            <TextField prefHeight="40.0" promptText="Benzyna / Diesel / Hybryda" styleClass="neon-input" />
+            <Label styleClass="field-label" text="Cena maksymalna / dzień" />
+            <TextField prefHeight="40.0" promptText="np. 250 zł" styleClass="neon-input" />
+            <Button mnemonicParsing="false" styleClass="neon-button primary-button" text="Zastosuj filtry" />
+          </children>
+        </VBox>
+      </left>
+      <center>
+        <VBox spacing="18.0" BorderPane.alignment="CENTER">
+          <padding>
+            <Insets bottom="22.0" left="22.0" right="22.0" top="22.0" />
+          </padding>
+          <children>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+              <children>
+                <VBox spacing="4.0">
+                  <children>
+                    <Label styleClass="section-title neon-cyan" text="Dostępne samochody" textFill="WHITE" />
+                    <Label styleClass="subtitle" text="Wybierz pojazd i przejdź do szczegółów rezerwacji." />
+                  </children>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label styleClass="soft-text" text="6 pojazdów dostępnych" />
+              </children>
+            </HBox>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="transparent-scroll">
+              <content>
+                <TilePane hgap="18.0" prefColumns="3" prefTileHeight="240.0" prefTileWidth="280.0" styleClass="tile-pane" vgap="18.0">
+                  <children>
+                    <VBox spacing="12.0" styleClass="car-card">
+                      <padding><Insets bottom="18.0" left="18.0" right="18.0" top="18.0" /></padding>
+                      <children>
+                        <Label styleClass="section-title neon-cyan" text="Toyota Corolla 2022" textFill="WHITE" />
+                        <Label styleClass="body-text" text="Automat • Benzyna • 5 miejsc" />
+                        <Label styleClass="info-text" text="Ekonomiczny model miejski idealny na codzienne trasy." wrapText="true" />
+                        <Region prefHeight="10.0" />
+                        <Label styleClass="price-text" text="149 zł / dzień" />
+                        <Button mnemonicParsing="false" styleClass="neon-button primary-button" text="Zarezerwuj" />
+                      </children>
+                    </VBox>
+                    <VBox spacing="12.0" styleClass="car-card">
+                      <padding><Insets bottom="18.0" left="18.0" right="18.0" top="18.0" /></padding>
+                      <children>
+                        <Label styleClass="section-title neon-cyan" text="Skoda Octavia 2021" textFill="WHITE" />
+                        <Label styleClass="body-text" text="Manual • Diesel • 5 miejsc" />
+                        <Label styleClass="info-text" text="Przestronne auto na dłuższe wyjazdy i codzienne użytkowanie." wrapText="true" />
+                        <Region prefHeight="10.0" />
+                        <Label styleClass="price-text" text="169 zł / dzień" />
+                        <Button mnemonicParsing="false" styleClass="neon-button primary-button" text="Zarezerwuj" />
+                      </children>
+                    </VBox>
+                    <VBox spacing="12.0" styleClass="car-card">
+                      <padding><Insets bottom="18.0" left="18.0" right="18.0" top="18.0" /></padding>
+                      <children>
+                        <Label styleClass="section-title neon-cyan" text="Kia Sportage 2023" textFill="WHITE" />
+                        <Label styleClass="body-text" text="Automat • Hybryda • SUV" />
+                        <Label styleClass="info-text" text="Wygodny SUV dla osób, które chcą większego komfortu jazdy." wrapText="true" />
+                        <Region prefHeight="10.0" />
+                        <Label styleClass="price-text" text="239 zł / dzień" />
+                        <Button mnemonicParsing="false" styleClass="neon-button primary-button" text="Zarezerwuj" />
+                      </children>
+                    </VBox>
+                  </children>
+                </TilePane>
+              </content>
+            </ScrollPane>
+          </children>
+        </VBox>
+      </center>
+    </BorderPane>
+  </children>
+</AnchorPane>
