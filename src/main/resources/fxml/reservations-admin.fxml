@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="820.0" prefWidth="1280.0" styleClass="wall-bg"
+            stylesheets="@app.css"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.carrental.gui.ReservationsAdminController">
+    <children>
+        <BorderPane styleClass="surface-wrap"
+                    AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="22.0"
+                    AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="22.0">
+            <top>
+                <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="top-bar">
+                    <padding><Insets bottom="14.0" left="24.0" right="24.0" top="14.0"/></padding>
+                    <children>
+                        <Label styleClass="badge-label" text="Wypożyczalnia samochodów"/>
+                        <Label styleClass="section-title neon-cyan" text="Rezerwacje"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <ComboBox fx:id="statusFilter" prefHeight="40.0" prefWidth="180.0"
+                                  promptText="Status: Wszystkie" styleClass="neon-input"/>
+                        <Button fx:id="backButton" mnemonicParsing="false"
+                                styleClass="neon-button ghost-button" text="← Wróć"/>
+                    </children>
+                </HBox>
+            </top>
+            <center>
+                <VBox spacing="16.0">
+                    <padding><Insets bottom="22.0" left="22.0" right="22.0" top="22.0"/></padding>
+                    <children>
+                        <VBox spacing="12.0" styleClass="table-box">
+                            <padding><Insets bottom="18.0" left="18.0" right="18.0" top="18.0"/></padding>
+                            <children>
+                                <TableView fx:id="reservationsTable" prefHeight="620.0"
+                                           styleClass="neon-table">
+                                    <columns>
+                                        <TableColumn fx:id="colId" prefWidth="60" text="ID"/>
+                                        <TableColumn fx:id="colClient" prefWidth="180" text="Klient"/>
+                                        <TableColumn fx:id="colVehicle" prefWidth="180" text="Pojazd"/>
+                                        <TableColumn fx:id="colStartDate" prefWidth="140" text="Od"/>
+                                        <TableColumn fx:id="colEndDate" prefWidth="140" text="Do"/>
+                                        <TableColumn fx:id="colCost" prefWidth="100" text="Koszt"/>
+                                        <TableColumn fx:id="colStatus" prefWidth="120" text="Status"/>
+                                        <TableColumn fx:id="colActions" prefWidth="140" text="Akcje"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="820.0" prefWidth="1280.0" styleClass="wall-bg"
+            stylesheets="@app.css"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.carrental.gui.AdminDashboardController">
+    <children>
+        <BorderPane styleClass="surface-wrap"
+                    AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="22.0"
+                    AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="22.0">
+            <!-- TOP BAR -->
+            <top>
+                <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="top-bar">
+                    <padding><Insets bottom="14.0" left="24.0" right="24.0" top="14.0"/></padding>
+                    <children>
+                        <Label styleClass="badge-label" text="Wypożyczalnia samochodów"/>
+                        <Label styleClass="section-title neon-cyan" text="Panel administratora"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="loggedUserLabel" styleClass="soft-text" text="Admin: Jan Kowalski"/>
+                        <Button mnemonicParsing="false" styleClass="neon-button secondary-button"
+                                text="Wyloguj" fx:id="logoutButton"/>
+                    </children>
+                </HBox>
+            </top>
+            <!-- BOCZNE MENU -->
+            <left>
+                <VBox prefWidth="220.0" spacing="8.0" styleClass="side-card">
+                    <padding><Insets bottom="22.0" left="16.0" right="16.0" top="22.0"/></padding>
+                    <children>
+                        <Label styleClass="field-label" text="NAWIGACJA"/>
+                        <Button fx:id="navDashboard" prefWidth="188.0" mnemonicParsing="false"
+                                styleClass="neon-button primary-button" text="Dashboard"/>
+                        <Button fx:id="navVehicles" prefWidth="188.0" mnemonicParsing="false"
+                                styleClass="neon-button ghost-button" text="Pojazdy"/>
+                        <Button fx:id="navReservations" prefWidth="188.0" mnemonicParsing="false"
+                                styleClass="neon-button ghost-button" text="Rezerwacje"/>
+                        <Button fx:id="navEmployees" prefWidth="188.0" mnemonicParsing="false"
+                                styleClass="neon-button ghost-button" text="Pracownicy"/>
+                        <Button fx:id="navService" prefWidth="188.0" mnemonicParsing="false"
+                                styleClass="neon-button ghost-button" text="Serwis"/>
+                        <Button fx:id="navReports" prefWidth="188.0" mnemonicParsing="false"
+                                styleClass="neon-button ghost-button" text="Raporty"/>
+                    </children>
+                </VBox>
+            </left>
+            <!-- GŁÓWNA ZAWARTOŚĆ -->
+            <center>
+                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="transparent-scroll">
+                    <content>
+                        <VBox spacing="22.0">
+                            <padding><Insets bottom="22.0" left="22.0" right="22.0" top="22.0"/></padding>
+                            <children>
+                                <Label styleClass="page-title neon-pink" text="Dashboard"/>
+                                <!-- KARTY STATYSTYK -->
+                                <HBox spacing="16.0">
+                                    <children>
+                                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0"
+                                              spacing="8.0" styleClass="metric-card" HBox.hgrow="ALWAYS">
+                                            <padding><Insets bottom="18.0" left="18.0" right="18.0" top="18.0"/></padding>
+                                            <children>
+                                                <Label fx:id="totalVehiclesLabel" styleClass="metric-number neon-cyan" text="24"/>
+                                                <Label styleClass="soft-text" text="Pojazdy łącznie"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0"
+                                              spacing="8.0" styleClass="metric-card" HBox.hgrow="ALWAYS">
+                                            <padding><Insets bottom="18.0" left="18.0" right="18.0" top="18.0"/></padding>
+                                            <children>
+                                                <Label fx:id="activeReservationsLabel" styleClass="metric-number neon-cyan" text="8"/>
+                                                <Label styleClass="soft-text" text="Aktywne rezerwacje"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0"
+                                              spacing="8.0" styleClass="metric-card" HBox.hgrow="ALWAYS">
+                                            <padding><Insets bottom="18.0" left="18.0" right="18.0" top="18.0"/></padding>
+                                            <children>
+                                                <Label fx:id="inServiceLabel" styleClass="metric-number neon-pink" text="3"/>
+                                                <Label styleClass="soft-text" text="Auta w serwisie"/>
+                                            </children>
+                                        </VBox>
+                                        <VBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0"
+                                              spacing="8.0" styleClass="metric-card" HBox.hgrow="ALWAYS">
+                                            <padding><Insets bottom="18.0" left="18.0" right="18.0" top="18.0"/></padding>
+                                            <children>
+                                                <Label fx:id="totalClientsLabel" styleClass="metric-number neon-cyan" text="57"/>
+                                                <Label styleClass="soft-text" text="Klienci"/>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                                <!-- OSTATNIE REZERWACJE — PODGLĄD -->
+                                <VBox spacing="12.0" styleClass="table-box">
+                                    <padding><Insets bottom="18.0" left="18.0" right="18.0" top="18.0"/></padding>
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                            <children>
+                                                <Label styleClass="section-title neon-cyan" text="Ostatnie rezerwacje"/>
+                                                <Region HBox.hgrow="ALWAYS"/>
+                                                <Button mnemonicParsing="false" fx:id="seeAllReservationsButton"
+                                                        styleClass="neon-button ghost-button" text="Zobacz wszystkie"/>
+                                            </children>
+                                        </HBox>
+                                        <TableView fx:id="recentReservationsTable" prefHeight="220.0"
+                                                   styleClass="neon-table">
+                                            <columns>
+                                                <TableColumn fx:id="colResId" prefWidth="60" text="ID"/>
+                                                <TableColumn fx:id="colResClient" prefWidth="180" text="Klient"/>
+                                                <TableColumn fx:id="colResVehicle" prefWidth="180" text="Pojazd"/>
+                                                <TableColumn fx:id="colResDate" prefWidth="160" text="Data od–do"/>
+                                                <TableColumn fx:id="colResStatus" prefWidth="120" text="Status"/>
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>
