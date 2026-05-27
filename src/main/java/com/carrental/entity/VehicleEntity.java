@@ -2,6 +2,8 @@ package com.carrental.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "vehicles")
 public class VehicleEntity {
@@ -19,8 +21,8 @@ public class VehicleEntity {
     @Column(name = "description", length = 500)
     private String description;
 
-    @Column(name = "price_per_hour", nullable = false)
-    private Double pricePerHour;
+    @Column(name = "price_per_hour", precision = 10, scale = 2)
+    private BigDecimal pricePerHour;
 
     @Column(name = "status", nullable = false, length = 20)
     private String status; // AVAILABLE, RENTED, IN_SERVICE
@@ -49,8 +51,8 @@ public class VehicleEntity {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    public Double getPricePerHour() { return pricePerHour; }
-    public void setPricePerHour(Double pricePerHour) { this.pricePerHour = pricePerHour; }
+    public BigDecimal getPricePerHour() { return pricePerHour; }
+    public void setPricePerHour(BigDecimal pricePerHour) { this.pricePerHour = pricePerHour; }
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }

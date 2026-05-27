@@ -1,6 +1,8 @@
 package com.carrental.entity;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,8 +17,8 @@ public class PaymentEntity {
     @JoinColumn(name = "reservation_id")
     private ReservationEntity reservation;
 
-    @Column(name = "amount", nullable = false)
-    private Double amount;
+    @Column(name = "amount", precision = 10, scale = 2)
+    private BigDecimal amount;
 
     @Column(name = "payment_status", nullable = false, length = 20)
     private String paymentStatus; // PENDING, COMPLETED, FAILED, REFUNDED
@@ -36,8 +38,8 @@ public class PaymentEntity {
     public ReservationEntity getReservation() { return reservation; }
     public void setReservation(ReservationEntity reservation) { this.reservation = reservation; }
 
-    public Double getAmount() { return amount; }
-    public void setAmount(Double amount) { this.amount = amount; }
+    public BigDecimal getAmount() { return amount; }
+    public void setAmount(BigDecimal amount) { this.amount = amount; }
 
     public String getPaymentStatus() { return paymentStatus; }
     public void setPaymentStatus(String paymentStatus) { this.paymentStatus = paymentStatus; }

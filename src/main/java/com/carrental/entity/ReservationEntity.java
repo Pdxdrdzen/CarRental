@@ -1,6 +1,8 @@
 package com.carrental.entity;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,9 +30,8 @@ public class ReservationEntity {
     @Column(name = "status", nullable = false, length = 20)
     private String status; // PENDING, CONFIRMED, CANCELLED, COMPLETED
 
-    @Column(name = "total_cost")
-    private Double totalCost;
-
+    @Column(name = "total_cost", precision = 10, scale = 2)
+    private BigDecimal totalCost;
     public ReservationEntity() {}
 
     // Gettery i settery
@@ -52,6 +53,6 @@ public class ReservationEntity {
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
-    public Double getTotalCost() { return totalCost; }
-    public void setTotalCost(Double totalCost) { this.totalCost = totalCost; }
+    public BigDecimal getTotalCost() { return totalCost; }
+    public void setTotalCost(BigDecimal totalCost) { this.totalCost = totalCost; }
 }

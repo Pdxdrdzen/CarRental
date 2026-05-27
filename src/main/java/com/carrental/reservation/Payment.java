@@ -1,6 +1,9 @@
 package com.carrental.reservation;
 
 import java.time.LocalDateTime;
+import java.math.BigDecimal;
+import jakarta.persistence.Column;
+
 
 public class Payment {
     private Long id;
