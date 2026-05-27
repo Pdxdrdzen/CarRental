@@ -1,26 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 
-<VBox spacing="10" style="-fx-padding: 20;"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.carrental.gui.VehicleListController">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Lista pojazdów"
-               style="-fx-font-size: 20; -fx-font-weight: bold;"/>
-        <Button text="Odśwież" onAction="#loadVehicles"/>
-        <Button text="Nowa rezerwacja" onAction="#openReservation"
-                style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
-    </HBox>
+<VBox spacing="16.0"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.carrental.gui.VehicleListController"
+      stylesheets="@app.css"
+      styleClass="screen-root">
 
-    <TableView fx:id="vehicleTable" prefHeight="500">
-        <columns>
-            <TableColumn fx:id="brandCol" text="Marka" prefWidth="120"/>
-            <TableColumn fx:id="modelCol" text="Model" prefWidth="120"/>
-            <TableColumn fx:id="priceCol" text="Cena/h" prefWidth="100"/>
-            <TableColumn fx:id="statusCol" text="Status" prefWidth="120"/>
-            <TableColumn fx:id="typeCol" text="Typ" prefWidth="80"/>
-        </columns>
-    </TableView>
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="topbar-card">
+            <children>
+                <ImageView fitHeight="42.0" fitWidth="42.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../static/carrental_icon.png" />
+                    </image>
+                </ImageView>
+
+                <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Lista pojazdów" styleClass="section-title" />
+                        <Label text="Podgląd dostępnych samochodów i szybkie akcje" styleClass="section-subtitle" />
+                    </children>
+                </VBox>
+
+                <Button text="Odśwież"
+                        onAction="#loadVehicles"
+                        styleClass="secondary-button" />
+
+                <Button text="Nowa rezerwacja"
+                        onAction="#openReservation"
+                        styleClass="primary-button" />
+            </children>
+
+            <padding>
+                <Insets top="16.0" right="18.0" bottom="16.0" left="18.0" />
+            </padding>
+        </HBox>
+
+        <VBox spacing="10.0" styleClass="table-wrapper" VBox.vgrow="ALWAYS">
+            <children>
+                <Label text="Aktywna lista floty" styleClass="small-info" />
+
+                <TableView fx:id="vehicleTable" prefHeight="500.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="brandCol" text="Marka" prefWidth="140.0" />
+                        <TableColumn fx:id="modelCol" text="Model" prefWidth="140.0" />
+                        <TableColumn fx:id="priceCol" text="Cena / h" prefWidth="120.0" />
+                        <TableColumn fx:id="statusCol" text="Status" prefWidth="160.0" />
+                        <TableColumn fx:id="typeCol" text="Typ" prefWidth="120.0" />
+                    </columns>
+                    <placeholder>
+                        <Label text="Brak pojazdów do wyświetlenia" styleClass="placeholder-label" />
+                    </placeholder>
+                </TableView>
+            </children>
+
+            <padding>
+                <Insets top="14.0" right="14.0" bottom="14.0" left="14.0" />
+            </padding>
+        </VBox>
+    </children>
+
+    <padding>
+        <Insets top="18.0" right="18.0" bottom="18.0" left="18.0" />
+    </padding>
 </VBox>

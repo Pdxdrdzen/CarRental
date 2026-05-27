@@ -3,112 +3,132 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="820.0" prefWidth="1280.0" styleClass="wall-bg" stylesheets="@app.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<VBox spacing="16.0"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      stylesheets="@app.css"
+      styleClass="screen-root">
+
   <children>
-    <BorderPane styleClass="surface-wrap" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="22.0">
-      <top>
-        <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="top-bar">
-          <padding>
-            <Insets bottom="16.0" left="24.0" right="24.0" top="16.0" />
-          </padding>
+    <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="topbar-card">
+      <children>
+        <ImageView fitHeight="42.0" fitWidth="42.0" preserveRatio="true">
+          <image>
+            <Image url="@../static/carrental_icon.png" />
+          </image>
+        </ImageView>
+
+        <VBox spacing="2.0" HBox.hgrow="ALWAYS">
           <children>
-            <Label styleClass="badge-label" text="Wypożyczalnia samochodów" />
-            <Label styleClass="section-title neon-cyan" text="Panel użytkownika" textFill="WHITE" />
-            <Region HBox.hgrow="ALWAYS" />
-            <TextField fx:id="searchField" prefHeight="40.0" prefWidth="250.0" promptText="Szukaj pojazdu..." styleClass="neon-input" />
-            <Button mnemonicParsing="false" styleClass="neon-button ghost-button" text="Moje rezerwacje" />
-            <Button mnemonicParsing="false" styleClass="neon-button secondary-button" text="Wyloguj" />
-          </children>
-        </HBox>
-      </top>
-      <left>
-        <VBox prefWidth="260.0" spacing="14.0" styleClass="side-card" BorderPane.alignment="TOP_LEFT">
-          <padding>
-            <Insets bottom="22.0" left="22.0" right="22.0" top="22.0" />
-          </padding>
-          <children>
-            <Label styleClass="section-title neon-pink" text="Filtry" textFill="WHITE" />
-            <Label styleClass="field-label" text="Marka" />
-            <TextField prefHeight="40.0" promptText="np. Toyota" styleClass="neon-input" />
-            <Label styleClass="field-label" text="Typ paliwa" />
-            <TextField prefHeight="40.0" promptText="Benzyna / Diesel / Hybryda" styleClass="neon-input" />
-            <Label styleClass="field-label" text="Cena maksymalna / dzień" />
-            <TextField prefHeight="40.0" promptText="np. 250 zł" styleClass="neon-input" />
-            <Button mnemonicParsing="false" styleClass="neon-button primary-button" text="Zastosuj filtry" />
+            <Label text="CarRental Dashboard" styleClass="section-title" />
+            <Label text="Podsumowanie aktywności systemu i szybki dostęp do modułów" styleClass="section-subtitle" />
           </children>
         </VBox>
-      </left>
-      <center>
-        <VBox spacing="18.0" BorderPane.alignment="CENTER">
-          <padding>
-            <Insets bottom="22.0" left="22.0" right="22.0" top="22.0" />
-          </padding>
+
+        <Button text="Pojazdy" styleClass="secondary-button" />
+        <Button text="Rezerwacje" styleClass="secondary-button" />
+        <Button text="Wyloguj" styleClass="primary-button" />
+      </children>
+
+      <padding>
+        <Insets top="16.0" right="18.0" bottom="16.0" left="18.0" />
+      </padding>
+    </HBox>
+
+    <HBox spacing="16.0">
+      <children>
+        <VBox spacing="8.0" styleClass="info-card" HBox.hgrow="ALWAYS">
           <children>
-            <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Label text="Dostępne pojazdy" styleClass="small-info" />
+            <Label text="86" styleClass="page-title" />
+          </children>
+          <padding>
+            <Insets top="16.0" right="16.0" bottom="16.0" left="16.0" />
+          </padding>
+        </VBox>
+
+        <VBox spacing="8.0" styleClass="info-card" HBox.hgrow="ALWAYS">
+          <children>
+            <Label text="Aktywne rezerwacje" styleClass="small-info" />
+            <Label text="14" styleClass="page-title" />
+          </children>
+          <padding>
+            <Insets top="16.0" right="16.0" bottom="16.0" left="16.0" />
+          </padding>
+        </VBox>
+
+        <VBox spacing="8.0" styleClass="info-card" HBox.hgrow="ALWAYS">
+          <children>
+            <Label text="Użytkownicy online" styleClass="small-info" />
+            <Label text="09" styleClass="page-title" />
+          </children>
+          <padding>
+            <Insets top="16.0" right="16.0" bottom="16.0" left="16.0" />
+          </padding>
+        </VBox>
+      </children>
+    </HBox>
+
+    <HBox spacing="16.0" VBox.vgrow="ALWAYS">
+      <children>
+        <VBox prefWidth="260.0" spacing="12.0" styleClass="form-wrapper">
+          <children>
+            <Label text="Szybka nawigacja" styleClass="subsection-title" />
+            <Button text="Lista pojazdów" styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
+            <Button text="Nowa rezerwacja" styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
+            <Button text="Panel użytkownika" styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
+            <Button text="Raporty" styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
+
+            <Label text="Status systemu" styleClass="subsection-title" />
+            <Label text="Flota zsynchronizowana" styleClass="helper-label" />
+            <Label text="Baza dostępna" styleClass="helper-label" />
+            <Label text="Brak krytycznych błędów" styleClass="helper-label" />
+          </children>
+          <padding>
+            <Insets top="18.0" right="18.0" bottom="18.0" left="18.0" />
+          </padding>
+        </VBox>
+
+        <VBox spacing="12.0" styleClass="table-wrapper" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox alignment="CENTER_LEFT">
               <children>
-                <VBox spacing="4.0">
-                  <children>
-                    <Label styleClass="section-title neon-cyan" text="Dostępne samochody" textFill="WHITE" />
-                    <Label styleClass="subtitle" text="Wybierz pojazd i przejdź do szczegółów rezerwacji." />
-                  </children>
-                </VBox>
-                <Region HBox.hgrow="ALWAYS" />
-                <Label styleClass="soft-text" text="6 pojazdów dostępnych" />
+                <Label text="Ostatnio dodane pojazdy" styleClass="subsection-title" HBox.hgrow="ALWAYS" />
+                <Button text="Zobacz wszystko" styleClass="primary-button" />
               </children>
             </HBox>
-            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="transparent-scroll">
-              <content>
-                <TilePane hgap="18.0" prefColumns="3" prefTileHeight="240.0" prefTileWidth="280.0" styleClass="tile-pane" vgap="18.0">
-                  <children>
-                    <VBox spacing="12.0" styleClass="car-card">
-                      <padding><Insets bottom="18.0" left="18.0" right="18.0" top="18.0" /></padding>
-                      <children>
-                        <Label styleClass="section-title neon-cyan" text="Toyota Corolla 2022" textFill="WHITE" />
-                        <Label styleClass="body-text" text="Automat • Benzyna • 5 miejsc" />
-                        <Label styleClass="info-text" text="Ekonomiczny model miejski idealny na codzienne trasy." wrapText="true" />
-                        <Region prefHeight="10.0" />
-                        <Label styleClass="price-text" text="149 zł / dzień" />
-                        <Button mnemonicParsing="false" styleClass="neon-button primary-button" text="Zarezerwuj" />
-                      </children>
-                    </VBox>
-                    <VBox spacing="12.0" styleClass="car-card">
-                      <padding><Insets bottom="18.0" left="18.0" right="18.0" top="18.0" /></padding>
-                      <children>
-                        <Label styleClass="section-title neon-cyan" text="Skoda Octavia 2021" textFill="WHITE" />
-                        <Label styleClass="body-text" text="Manual • Diesel • 5 miejsc" />
-                        <Label styleClass="info-text" text="Przestronne auto na dłuższe wyjazdy i codzienne użytkowanie." wrapText="true" />
-                        <Region prefHeight="10.0" />
-                        <Label styleClass="price-text" text="169 zł / dzień" />
-                        <Button mnemonicParsing="false" styleClass="neon-button primary-button" text="Zarezerwuj" />
-                      </children>
-                    </VBox>
-                    <VBox spacing="12.0" styleClass="car-card">
-                      <padding><Insets bottom="18.0" left="18.0" right="18.0" top="18.0" /></padding>
-                      <children>
-                        <Label styleClass="section-title neon-cyan" text="Kia Sportage 2023" textFill="WHITE" />
-                        <Label styleClass="body-text" text="Automat • Hybryda • SUV" />
-                        <Label styleClass="info-text" text="Wygodny SUV dla osób, które chcą większego komfortu jazdy." wrapText="true" />
-                        <Region prefHeight="10.0" />
-                        <Label styleClass="price-text" text="239 zł / dzień" />
-                        <Button mnemonicParsing="false" styleClass="neon-button primary-button" text="Zarezerwuj" />
-                      </children>
-                    </VBox>
-                  </children>
-                </TilePane>
-              </content>
-            </ScrollPane>
+
+            <TableView VBox.vgrow="ALWAYS">
+              <columns>
+                <TableColumn text="Marka" prefWidth="140.0" />
+                <TableColumn text="Model" prefWidth="140.0" />
+                <TableColumn text="Typ" prefWidth="120.0" />
+                <TableColumn text="Status" prefWidth="180.0" />
+                <TableColumn text="Cena / h" prefWidth="120.0" />
+              </columns>
+              <placeholder>
+                <Label text="Brak danych do podglądu" styleClass="placeholder-label" />
+              </placeholder>
+            </TableView>
           </children>
+
+          <padding>
+            <Insets top="18.0" right="18.0" bottom="18.0" left="18.0" />
+          </padding>
         </VBox>
-      </center>
-    </BorderPane>
+      </children>
+    </HBox>
   </children>
-</AnchorPane>
+
+  <padding>
+    <Insets top="18.0" right="18.0" bottom="18.0" left="18.0" />
+  </padding>
+</VBox>

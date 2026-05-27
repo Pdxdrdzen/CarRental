@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\resources",
+    "\\src\\main\\resources\\fxml",
+    "\\src\\test",
+    "\\src\\test\\java",
+    "\\src\\test\\java\\com",
+    "\\src\\test\\java\\com\\carrental",
+    "\\src\\test\\java\\com\\carrental\\CarRentalApp"
+  ],
+  "SelectedNode": "\\src\\main\\resources\\fxml",
+  "PreviewInSolutionExplorer": false
+}
