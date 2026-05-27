@@ -19,7 +19,7 @@ public class MainApp extends Application{
                 getClass().getResource("/fxml/login.fxml")
         );
         try{
-            Scene scene=new Scene(loader.load(),400,300);
+            Scene scene=new Scene(loader.load(),900,600);
             stage.setTitle("Wypozyczalnia Samochodowa - panel logowania");
             stage.setScene(scene);
             stage.show();
