@@ -53,8 +53,10 @@ public class ServiceAdminController {
         colVehicle.setCellValueFactory(d -> {
             Object v = d.getValue().get("vehicle");
             if (v instanceof Map<?,?> vm) {
+                Object brand = vm.get("brand");
+                Object model = vm.get("model");
                 return new javafx.beans.property.SimpleStringProperty(
-                        vm.getOrDefault("brand","") + " " + vm.getOrDefault("model",""));
+                        String.valueOf(brand) + " " + String.valueOf(model));
             }
             return new javafx.beans.property.SimpleStringProperty(String.valueOf(v));
         });
@@ -125,9 +127,12 @@ public class ServiceAdminController {
         FilteredList<Map<String, Object>> filtered = new FilteredList<>(allRequests, row -> {
             String desc = String.valueOf(row.getOrDefault("description", "")).toLowerCase();
             Object v = row.get("vehicle");
-            String vName = (v instanceof Map<?,?> vm)
-                    ? (vm.getOrDefault("brand","") + " " + vm.getOrDefault("model","")).toLowerCase()
-                    : "";
+            String vName = "";
+            if (v instanceof Map<?,?> vm) {
+                Object brand = vm.get("brand");
+                Object model = vm.get("model");
+                vName = (String.valueOf(brand) + " " + String.valueOf(model)).toLowerCase();
+            }
             boolean ms = search.isEmpty() || desc.contains(search) || vName.contains(search);
             boolean mst = status == null || status.equals("Wszystkie")
                     || status.equals(String.valueOf(row.getOrDefault("status","")));
