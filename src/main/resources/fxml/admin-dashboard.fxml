@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox spacing="0"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.carrental.gui.AdminDashboardController"
+      stylesheets="@app.css"
+      styleClass="screen-root">
+    <children>
+
+        <!-- SIDEBAR -->
+        <VBox prefWidth="220.0" spacing="10.0" styleClass="form-wrapper">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <ImageView fitHeight="36.0" fitWidth="36.0" preserveRatio="true">
+                            <image><Image url="@../static/carrental_icon.png" /></image>
+                        </ImageView>
+                        <VBox spacing="2.0">
+                            <children>
+                                <Label text="CarRental" styleClass="subsection-title" />
+                                <Label text="Panel admina" styleClass="section-subtitle" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <Label text="Nawigacja" styleClass="small-info" />
+                <Button fx:id="navVehicles" text="🚗  Pojazdy" styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
+                <Button fx:id="navReservations" text="📋  Rezerwacje" styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
+                <Button fx:id="navEmployees" text="👥  Pracownicy" styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Label fx:id="loggedUserLabel" text="" styleClass="section-subtitle" />
+                <Button fx:id="logoutButton" text="Wyloguj" styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
+            </children>
+            <padding><Insets top="20.0" right="14.0" bottom="20.0" left="14.0" /></padding>
+        </VBox>
+
+        <!-- MAIN CONTENT -->
+        <VBox spacing="16.0" HBox.hgrow="ALWAYS">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="topbar-card">
+                    <children>
+                        <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="Dashboard" styleClass="section-title" />
+                                <Label text="Podsumowanie systemu wypożyczalni" styleClass="section-subtitle" />
+                            </children>
+                        </VBox>
+                        <Button fx:id="seeAllReservationsButton" text="Wszystkie rezerwacje" styleClass="primary-button" />
+                    </children>
+                    <padding><Insets top="16.0" right="18.0" bottom="16.0" left="18.0" /></padding>
+                </HBox>
+
+                <!-- KPI CARDS -->
+                <HBox spacing="14.0">
+                    <children>
+                        <VBox spacing="6.0" styleClass="info-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="Wszystkie pojazdy" styleClass="small-info" />
+                                <Label fx:id="totalVehiclesLabel" text="-" styleClass="page-title" />
+                            </children>
+                            <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0" /></padding>
+                        </VBox>
+                        <VBox spacing="6.0" styleClass="info-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="Aktywne rezerwacje" styleClass="small-info" />
+                                <Label fx:id="activeReservationsLabel" text="-" styleClass="page-title" />
+                            </children>
+                            <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0" /></padding>
+                        </VBox>
+                        <VBox spacing="6.0" styleClass="info-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="W serwisie" styleClass="small-info" />
+                                <Label fx:id="inServiceLabel" text="-" styleClass="page-title" />
+                            </children>
+                            <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0" /></padding>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- RECENT RESERVATIONS TABLE -->
+                <VBox spacing="10.0" styleClass="table-wrapper" VBox.vgrow="ALWAYS">
+                    <children>
+                        <Label text="Ostatnie rezerwacje" styleClass="subsection-title" />
+                        <TableView fx:id="recentReservationsTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colResId"     text="ID"       prefWidth="60.0" />
+                                <TableColumn fx:id="colResClient" text="Klient"   prefWidth="180.0" />
+                                <TableColumn fx:id="colResVehicle" text="Pojazd"  prefWidth="180.0" />
+                                <TableColumn fx:id="colResDate"   text="Daty"     prefWidth="200.0" />
+                                <TableColumn fx:id="colResStatus" text="Status"   prefWidth="130.0" />
+                            </columns>
+                            <placeholder><Label text="Brak rezerwacji" styleClass="placeholder-label" /></placeholder>
+                        </TableView>
+                    </children>
+                    <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0" /></padding>
+                </VBox>
+            </children>
+            <padding><Insets top="18.0" right="18.0" bottom="18.0" left="18.0" /></padding>
+        </VBox>
+
+    </children>
+</HBox>
