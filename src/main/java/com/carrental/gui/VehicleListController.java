@@ -1,56 +1,53 @@
 package com.carrental.gui;
 
-import com.carrental.model.vehicle.Vehicle;
+import com.carrental.entity.VehicleEntity;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import com.fasterxml.jackson.core.type.TypeReference;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class VehicleListController {
 
-    @FXML private TableView<Vehicle> vehicleTable;
-    @FXML private TableColumn<Vehicle, String> brandCol;
-    @FXML private TableColumn<Vehicle, String> modelCol;
-    @FXML private TableColumn<Vehicle, Double> priceCol;
-    @FXML private TableColumn<Vehicle, String> statusCol;
-    @FXML private TableColumn<Vehicle, String> typeCol;
+    @FXML private TableView<VehicleEntity> vehicleTable;
+    @FXML private TableColumn<VehicleEntity, String> brandCol;
+    @FXML private TableColumn<VehicleEntity, String> modelCol;
+    @FXML private TableColumn<VehicleEntity, BigDecimal> priceCol;
+    @FXML private TableColumn<VehicleEntity, String> statusCol;
+    @FXML private TableColumn<VehicleEntity, String> typeCol;
 
     @FXML
     public void initialize() {
         brandCol.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleStringProperty(data.getValue().getBrand()));
+                new SimpleStringProperty(data.getValue().getBrand()));
         modelCol.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleStringProperty(data.getValue().getModel()));
+                new SimpleStringProperty(data.getValue().getModel()));
         priceCol.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleObjectProperty<>(data.getValue().getPricePerHour()));
+                new SimpleObjectProperty<>(data.getValue().getPricePerHour()));
         statusCol.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleStringProperty(data.getValue().getStatus().name()));
+                new SimpleStringProperty(data.getValue().getStatus()));
         typeCol.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleStringProperty(data.getValue().getType().name()));
-
+                new SimpleStringProperty(data.getValue().getType()));
         loadVehicles();
     }
 
     @FXML
     public void loadVehicles() {
-        // Docelowo: wywołanie HTTP GET /api/vehicles do Spring Boot
-        // Na razie testowe dane
-        List<Vehicle> testData = List.of(
-                new com.carrental.model.vehicle.Car.Builder()
-                        .id(1L).brand("Toyota").model("Corolla")
-                        .pricePerHour(50.0)
-                        .status(com.carrental.model.vehicle.VehicleStatus.AVAILABLE)
-                        .numberOfSeats(5).build(),
-                new com.carrental.model.vehicle.Car.Builder()
-                        .id(2L).brand("BMW").model("X5")
-                        .pricePerHour(120.0)
-                        .status(com.carrental.model.vehicle.VehicleStatus.RENTED)
-                        .numberOfSeats(5).build()
-        );
-        vehicleTable.setItems(FXCollections.observableArrayList(testData));
+        try {
+            List<com.carrental.entity.VehicleEntity> vehicles = ApiClient.get(
+                    "/vehicles",
+                    new TypeReference<List<VehicleEntity>>() {}
+            );
+            vehicleTable.setItems(FXCollections.observableArrayList(vehicles));
+        } catch (Exception e) {
+            System.err.println("Błąd ładowania pojazdów: " + e.getMessage());
+        }
     }
 
     @FXML

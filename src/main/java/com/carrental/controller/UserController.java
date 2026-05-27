@@ -72,6 +72,7 @@ public class UserController {
         }
     }
 
+
     // Record for login request
     public record LoginRequest(String email, String password) {}
 }
