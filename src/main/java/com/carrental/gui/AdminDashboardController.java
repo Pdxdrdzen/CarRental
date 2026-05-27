@@ -37,23 +37,21 @@ public class AdminDashboardController {
         loadMetrics();
         loadRecentReservations();
         setupNavigation();
+        if (SessionManager.isLoggedIn()) {
+            loggedUserLabel.setText("👤 " + SessionManager.getUserFullName());
+        }
     }
 
     private void setupTableColumns() {
-        colResId.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleStringProperty(data.getValue().id()));
-        colResClient.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleStringProperty(data.getValue().client()));
-        colResVehicle.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleStringProperty(data.getValue().vehicle()));
-        colResDate.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleStringProperty(data.getValue().date()));
-        colResStatus.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleStringProperty(data.getValue().status()));
+        colResId.setCellValueFactory(d -> new javafx.beans.property.SimpleStringProperty(d.getValue().id()));
+        colResClient.setCellValueFactory(d -> new javafx.beans.property.SimpleStringProperty(d.getValue().client()));
+        colResVehicle.setCellValueFactory(d -> new javafx.beans.property.SimpleStringProperty(d.getValue().vehicle()));
+        colResDate.setCellValueFactory(d -> new javafx.beans.property.SimpleStringProperty(d.getValue().date()));
+        colResStatus.setCellValueFactory(d -> new javafx.beans.property.SimpleStringProperty(d.getValue().status()));
     }
 
     private void loadMetrics() {
-        // TODO: change for HTTP in SpringBoot
+        // TODO: zamienić na HTTP GET
         totalVehiclesLabel.setText("24");
         activeReservationsLabel.setText("8");
         inServiceLabel.setText("3");
@@ -61,21 +59,31 @@ public class AdminDashboardController {
     }
 
     private void loadRecentReservations() {
-        // TODO: change for HTTP in SpringBoot
+        // TODO: zamienić na HTTP GET
         ObservableList<ReservationRow> data = FXCollections.observableArrayList(
-                new ReservationRow("1", "Jan Kowalski", "Toyota Corolla", "01.05 – 03.05", "CONFIRMED"),
-                new ReservationRow("2", "Anna Nowak", "Kia Sportage", "02.05 – 05.05", "PENDING"),
-                new ReservationRow("3", "Piotr Zając", "Skoda Octavia", "04.05 – 06.05", "COMPLETED")
+                new ReservationRow("1", "Jan Kowalski",  "Toyota Corolla", "01.05 – 03.05", "CONFIRMED"),
+                new ReservationRow("2", "Anna Nowak",    "Kia Sportage",   "02.05 – 05.05", "PENDING"),
+                new ReservationRow("3", "Piotr Zając",   "Skoda Octavia",  "04.05 – 06.05", "COMPLETED")
         );
         recentReservationsTable.setItems(data);
     }
 
     private void setupNavigation() {
-        navVehicles.setOnAction(e -> navigateTo("/fxml/vehicles-admin.fxml", "Pojazdy"));
-        navReservations.setOnAction(e -> navigateTo("/fxml/reservations-admin.fxml", "Rezerwacje"));
-        navEmployees.setOnAction(e -> navigateTo("/fxml/employees-admin.fxml", "Pracownicy"));
+        navVehicles.setOnAction(e          -> navigateTo("/fxml/vehicles-admin.fxml",      "Pojazdy"));
+        navReservations.setOnAction(e      -> navigateTo("/fxml/reservations-admin.fxml",  "Rezerwacje"));
+        navEmployees.setOnAction(e         -> navigateTo("/fxml/employees-admin.fxml",     "Pracownicy"));
+        navService.setOnAction(e  -> navigateTo("/fxml/service-admin.fxml",  "Serwis"));
+        navReports.setOnAction(e  -> navigateTo("/fxml/reports-admin.fxml",  "Raporty"));
         seeAllReservationsButton.setOnAction(e -> navigateTo("/fxml/reservations-admin.fxml", "Rezerwacje"));
-        logoutButton.setOnAction(e -> navigateTo("/fxml/admin-login.fxml", "Logowanie"));
+        logoutButton.setOnAction(e -> {
+            SessionManager.logout();
+            navigateTo("/fxml/login.fxml", "Logowanie");
+        });
+    }
+
+    private void showPlaceholder(String name) {
+        new Alert(Alert.AlertType.INFORMATION,
+                "Moduł \"" + name + "\" jest w przygotowaniu.", ButtonType.OK).showAndWait();
     }
 
     private void navigateTo(String fxmlPath, String title) {
@@ -89,12 +97,5 @@ public class AdminDashboardController {
         }
     }
 
-    // Record — for tables
-    public record ReservationRow(
-            String id,
-            String client,
-            String vehicle,
-            String date,
-            String status
-    ) {}
+    public record ReservationRow(String id, String client, String vehicle, String date, String status) {}
 }

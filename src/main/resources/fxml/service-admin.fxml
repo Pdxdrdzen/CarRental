@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16.0"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.carrental.gui.ServiceAdminController"
+      stylesheets="@app.css"
+      styleClass="screen-root">
+    <children>
+
+        <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="topbar-card">
+            <children>
+                <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Serwis pojazdów" styleClass="section-title"/>
+                        <Label text="Zarządzaj zgłoszeniami serwisowymi" styleClass="section-subtitle"/>
+                    </children>
+                </VBox>
+                <Button fx:id="addServiceButton" text="+ Nowe zgłoszenie" styleClass="primary-button"/>
+                <Button fx:id="backButton" text="← Wróć" styleClass="secondary-button"/>
+            </children>
+            <padding><Insets top="16.0" right="18.0" bottom="16.0" left="18.0"/></padding>
+        </HBox>
+
+        <!-- KPI row -->
+        <HBox spacing="12.0">
+            <children>
+                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                    <children>
+                        <Label text="OCZEKUJĄCE" styleClass="stat-label"/>
+                        <Label fx:id="pendingCount" text="—" styleClass="stat-value"/>
+                    </children>
+                    <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0"/></padding>
+                </VBox>
+                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                    <children>
+                        <Label text="W TRAKCIE" styleClass="stat-label"/>
+                        <Label fx:id="inProgressCount" text="—" styleClass="stat-value"/>
+                    </children>
+                    <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0"/></padding>
+                </VBox>
+                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                    <children>
+                        <Label text="ZAKOŃCZONE" styleClass="stat-label"/>
+                        <Label fx:id="resolvedCount" text="—" styleClass="stat-value"/>
+                    </children>
+                    <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0"/></padding>
+                </VBox>
+            </children>
+            <padding><Insets left="14.0" right="14.0"/></padding>
+        </HBox>
+
+        <HBox spacing="12.0">
+            <children>
+                <TextField fx:id="searchField" promptText="Szukaj po pojeździe lub opisie..."
+                           HBox.hgrow="ALWAYS" styleClass="app-input"/>
+                <ComboBox fx:id="statusFilter" promptText="Status"/>
+            </children>
+            <padding><Insets left="14.0" right="14.0"/></padding>
+        </HBox>
+
+        <VBox spacing="10.0" styleClass="table-wrapper" VBox.vgrow="ALWAYS">
+            <children>
+                <TableView fx:id="serviceTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId"          text="ID"        prefWidth="60.0"/>
+                        <TableColumn fx:id="colVehicle"     text="Pojazd"    prefWidth="180.0"/>
+                        <TableColumn fx:id="colDescription" text="Opis"      prefWidth="250.0"/>
+                        <TableColumn fx:id="colStatus"      text="Status"    prefWidth="120.0"/>
+                        <TableColumn fx:id="colCreated"     text="Data"      prefWidth="150.0"/>
+                        <TableColumn fx:id="colActions"     text="Akcje"     prefWidth="160.0"/>
+                    </columns>
+                    <placeholder><Label text="Brak zgłoszeń serwisowych" styleClass="placeholder-label"/></placeholder>
+                </TableView>
+            </children>
+            <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0"/></padding>
+        </VBox>
+
+    </children>
+    <padding><Insets top="18.0" right="18.0" bottom="18.0" left="18.0"/></padding>
+</VBox>

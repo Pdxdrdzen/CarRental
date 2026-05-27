@@ -30,9 +30,11 @@
                 </HBox>
 
                 <Label text="Nawigacja" styleClass="small-info" />
-                <Button fx:id="navVehicles" text="🚗  Pojazdy" styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
-                <Button fx:id="navReservations" text="📋  Rezerwacje" styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
-                <Button fx:id="navEmployees" text="👥  Pracownicy" styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
+                <Button fx:id="navVehicles"      text="🚗  Pojazdy"      styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
+                <Button fx:id="navReservations"  text="📋  Rezerwacje"   styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
+                <Button fx:id="navEmployees"     text="👥  Pracownicy"   styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
+                <Button fx:id="navService"       text="🔧  Serwis"       styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
+                <Button fx:id="navReports"       text="📊  Raporty"      styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
 
                 <Region VBox.vgrow="ALWAYS" />
 
@@ -58,12 +60,12 @@
                     <padding><Insets top="16.0" right="18.0" bottom="16.0" left="18.0" /></padding>
                 </HBox>
 
-                <!-- KPI CARDS -->
+                <!-- 4 KPI CARDS -->
                 <HBox spacing="14.0">
                     <children>
                         <VBox spacing="6.0" styleClass="info-card" HBox.hgrow="ALWAYS">
                             <children>
-                                <Label text="Wszystkie pojazdy" styleClass="small-info" />
+                                <Label text="Pojazdy" styleClass="small-info" />
                                 <Label fx:id="totalVehiclesLabel" text="-" styleClass="page-title" />
                             </children>
                             <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0" /></padding>
@@ -82,6 +84,13 @@
                             </children>
                             <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0" /></padding>
                         </VBox>
+                        <VBox spacing="6.0" styleClass="info-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="Klienci" styleClass="small-info" />
+                                <Label fx:id="totalClientsLabel" text="-" styleClass="page-title" />
+                            </children>
+                            <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0" /></padding>
+                        </VBox>
                     </children>
                 </HBox>
 
@@ -91,17 +100,18 @@
                         <Label text="Ostatnie rezerwacje" styleClass="subsection-title" />
                         <TableView fx:id="recentReservationsTable" VBox.vgrow="ALWAYS">
                             <columns>
-                                <TableColumn fx:id="colResId"     text="ID"       prefWidth="60.0" />
-                                <TableColumn fx:id="colResClient" text="Klient"   prefWidth="180.0" />
+                                <TableColumn fx:id="colResId"      text="ID"      prefWidth="60.0" />
+                                <TableColumn fx:id="colResClient"  text="Klient"  prefWidth="180.0" />
                                 <TableColumn fx:id="colResVehicle" text="Pojazd"  prefWidth="180.0" />
-                                <TableColumn fx:id="colResDate"   text="Daty"     prefWidth="200.0" />
-                                <TableColumn fx:id="colResStatus" text="Status"   prefWidth="130.0" />
+                                <TableColumn fx:id="colResDate"    text="Daty"    prefWidth="200.0" />
+                                <TableColumn fx:id="colResStatus"  text="Status"  prefWidth="130.0" />
                             </columns>
                             <placeholder><Label text="Brak rezerwacji" styleClass="placeholder-label" /></placeholder>
                         </TableView>
                     </children>
                     <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0" /></padding>
                 </VBox>
+
             </children>
             <padding><Insets top="18.0" right="18.0" bottom="18.0" left="18.0" /></padding>
         </VBox>

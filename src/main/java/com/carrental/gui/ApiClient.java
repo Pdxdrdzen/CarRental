@@ -9,6 +9,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 
 public class ApiClient {
 
@@ -58,6 +59,33 @@ public class ApiClient {
         HttpResponse<String> res = HTTP.send(req, HttpResponse.BodyHandlers.ofString());
         if (res.statusCode() >= 400)
             throw new RuntimeException("DELETE " + path + " returned " + res.statusCode());
+    }
+    public static <T> T postParams(String path, Map<String, String> params, Class<T> responseType) throws Exception {
+        StringBuilder url = new StringBuilder(BASE_URL + path + "?");
+        params.forEach((k, v) -> url.append(k).append("=")
+                .append(java.net.URLEncoder.encode(v, java.nio.charset.StandardCharsets.UTF_8)).append("&"));
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url.toString()))
+                .header("Authorization", "Bearer " + SessionManager.getToken())
+                .POST(HttpRequest.BodyPublishers.noBody())
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() >= 400) throw new RuntimeException(response.body());
+        return mapper.readValue(response.body(), responseType);
+    }
+    public static <T> T patch(String path, Object body, Class<T> responseType) throws Exception {
+        String bodyStr = body != null ? mapper.writeValueAsString(body) : "";
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + path))
+                .header("Content-Type", "application/json")
+                .header("Authorization", "Bearer " + SessionManager.getToken())
+                .method("PATCH", body != null
+                        ? HttpRequest.BodyPublishers.ofString(bodyStr)
+                        : HttpRequest.BodyPublishers.noBody())
+                .build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() >= 400) throw new RuntimeException(response.body());
+        return mapper.readValue(response.body(), responseType);
     }
 
     // helper: ApiClient.listOf(Map.class)

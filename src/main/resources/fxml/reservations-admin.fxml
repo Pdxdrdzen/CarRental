@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16.0"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.carrental.gui.ReservationsAdminController"
+      stylesheets="@app.css"
+      styleClass="screen-root">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="topbar-card">
+            <children>
+                <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Rezerwacje" styleClass="section-title"/>
+                        <Label text="Wszystkie rezerwacje w systemie" styleClass="section-subtitle"/>
+                    </children>
+                </VBox>
+                <Button fx:id="backButton" text="← Wróć" styleClass="secondary-button"/>
+            </children>
+            <padding><Insets top="16.0" right="18.0" bottom="16.0" left="18.0"/></padding>
+        </HBox>
+
+        <HBox spacing="12.0">
+            <children>
+                <TextField fx:id="searchField" promptText="Szukaj po kliencie lub pojeździe..." HBox.hgrow="ALWAYS" styleClass="app-input"/>
+                <ComboBox fx:id="statusFilter" promptText="Status"/>
+            </children>
+            <padding><Insets left="14.0" right="14.0"/></padding>
+        </HBox>
+
+        <VBox spacing="10.0" styleClass="table-wrapper" VBox.vgrow="ALWAYS">
+            <children>
+                <TableView fx:id="reservationsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colId"      text="ID"        prefWidth="60.0"/>
+                        <TableColumn fx:id="colClient"  text="Klient"    prefWidth="170.0"/>
+                        <TableColumn fx:id="colVehicle" text="Pojazd"    prefWidth="170.0"/>
+                        <TableColumn fx:id="colStart"   text="Od"        prefWidth="110.0"/>
+                        <TableColumn fx:id="colEnd"     text="Do"        prefWidth="110.0"/>
+                        <TableColumn fx:id="colStatus"  text="Status"    prefWidth="120.0"/>
+                        <TableColumn fx:id="colCost"    text="Koszt"     prefWidth="100.0"/>
+                        <TableColumn fx:id="colActions" text="Akcje"     prefWidth="120.0"/>
+                    </columns>
+                    <placeholder><Label text="Brak rezerwacji" styleClass="placeholder-label"/></placeholder>
+                </TableView>
+            </children>
+            <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0"/></padding>
+        </VBox>
+    </children>
+    <padding><Insets top="18.0" right="18.0" bottom="18.0" left="18.0"/></padding>
+</VBox>

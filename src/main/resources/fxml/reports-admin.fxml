@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="16.0"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.carrental.gui.ReportsAdminController"
+      stylesheets="@app.css"
+      styleClass="screen-root">
+    <children>
+
+        <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="topbar-card">
+            <children>
+                <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Raporty" styleClass="section-title"/>
+                        <Label text="Podsumowanie działalności wypożyczalni" styleClass="section-subtitle"/>
+                    </children>
+                </VBox>
+                <Button fx:id="refreshButton" text="↻ Odśwież" styleClass="secondary-button"/>
+                <Button fx:id="backButton"    text="← Wróć"    styleClass="secondary-button"/>
+            </children>
+            <padding><Insets top="16.0" right="18.0" bottom="16.0" left="18.0"/></padding>
+        </HBox>
+
+        <!-- KPI cards -->
+        <HBox spacing="12.0">
+            <children>
+                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                    <children>
+                        <Label text="WSZYSTKIE REZERWACJE" styleClass="stat-label"/>
+                        <Label fx:id="totalReservations" text="—" styleClass="stat-value"/>
+                    </children>
+                    <padding><Insets top="16.0" right="10.0" bottom="16.0" left="10.0"/></padding>
+                </VBox>
+                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                    <children>
+                        <Label text="POTWIERDZONE" styleClass="stat-label"/>
+                        <Label fx:id="confirmedReservations" text="—" styleClass="stat-value"/>
+                    </children>
+                    <padding><Insets top="16.0" right="10.0" bottom="16.0" left="10.0"/></padding>
+                </VBox>
+                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                    <children>
+                        <Label text="ZAKOŃCZONE" styleClass="stat-label"/>
+                        <Label fx:id="completedReservations" text="—" styleClass="stat-value"/>
+                    </children>
+                    <padding><Insets top="16.0" right="10.0" bottom="16.0" left="10.0"/></padding>
+                </VBox>
+                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                    <children>
+                        <Label text="ANULOWANE" styleClass="stat-label"/>
+                        <Label fx:id="cancelledReservations" text="—" styleClass="stat-value"/>
+                    </children>
+                    <padding><Insets top="16.0" right="10.0" bottom="16.0" left="10.0"/></padding>
+                </VBox>
+            </children>
+            <padding><Insets left="14.0" right="14.0"/></padding>
+        </HBox>
+
+        <HBox spacing="12.0">
+            <children>
+                <!-- Serwis summary -->
+                <VBox spacing="10.0" styleClass="table-wrapper" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Zgłoszenia serwisowe" styleClass="section-subtitle"/>
+                        <HBox spacing="10.0">
+                            <children>
+                                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                                    <children>
+                                        <Label text="OCZEKUJĄCE" styleClass="stat-label"/>
+                                        <Label fx:id="servicePending" text="—" styleClass="stat-value"/>
+                                    </children>
+                                    <padding><Insets top="10.0" right="8.0" bottom="10.0" left="8.0"/></padding>
+                                </VBox>
+                                <VBox styleClass="stat-card" HBox.hgrow="ALWAYS" alignment="CENTER">
+                                    <children>
+                                        <Label text="ZAKOŃCZONE" styleClass="stat-label"/>
+                                        <Label fx:id="serviceResolved" text="—" styleClass="stat-value"/>
+                                    </children>
+                                    <padding><Insets top="10.0" right="8.0" bottom="10.0" left="8.0"/></padding>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0"/></padding>
+                </VBox>
+
+                <!-- Top vehicles -->
+                <VBox spacing="10.0" styleClass="table-wrapper" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Najczęściej rezerwowane pojazdy" styleClass="section-subtitle"/>
+                        <TableView fx:id="topVehiclesTable" prefHeight="160.0">
+                            <columns>
+                                <TableColumn fx:id="colTopVehicle" text="Pojazd"        prefWidth="180.0"/>
+                                <TableColumn fx:id="colTopCount"   text="Rezerwacje"    prefWidth="100.0"/>
+                            </columns>
+                            <placeholder><Label text="Brak danych" styleClass="placeholder-label"/></placeholder>
+                        </TableView>
+                    </children>
+                    <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0"/></padding>
+                </VBox>
+            </children>
+            <padding><Insets left="14.0" right="14.0"/></padding>
+        </HBox>
+
+        <!-- All reservations table -->
+        <VBox spacing="10.0" styleClass="table-wrapper" VBox.vgrow="ALWAYS">
+            <children>
+                <Label text="Wszystkie rezerwacje" styleClass="section-subtitle"/>
+                <TableView fx:id="allReservationsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colResId"      text="ID"        prefWidth="60.0"/>
+                        <TableColumn fx:id="colResClient"  text="Klient"    prefWidth="160.0"/>
+                        <TableColumn fx:id="colResVehicle" text="Pojazd"    prefWidth="160.0"/>
+                        <TableColumn fx:id="colResStart"   text="Od"        prefWidth="130.0"/>
+                        <TableColumn fx:id="colResEnd"     text="Do"        prefWidth="130.0"/>
+                        <TableColumn fx:id="colResStatus"  text="Status"    prefWidth="120.0"/>
+                        <TableColumn fx:id="colResAmount"  text="Kwota"     prefWidth="100.0"/>
+                    </columns>
+                    <placeholder><Label text="Brak rezerwacji" styleClass="placeholder-label"/></placeholder>
+                </TableView>
+            </children>
+            <padding><Insets top="14.0" right="14.0" bottom="14.0" left="14.0"/></padding>
+        </VBox>
+
+    </children>
+    <padding><Insets top="18.0" right="18.0" bottom="18.0" left="18.0"/></padding>
+</VBox>

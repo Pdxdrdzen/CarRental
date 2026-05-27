@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="14.0"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.carrental.gui.AddEmployeeController"
+      stylesheets="@app.css"
+      styleClass="screen-root">
+    <children>
+        <Label fx:id="titleLabel" text="Dane pracownika" styleClass="section-title"/>
+
+        <HBox spacing="12.0">
+            <children>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Imię *" styleClass="field-label"/>
+                        <TextField fx:id="firstNameField" promptText="np. Jan" styleClass="app-input"/>
+                    </children>
+                </VBox>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Nazwisko *" styleClass="field-label"/>
+                        <TextField fx:id="lastNameField" promptText="np. Kowalski" styleClass="app-input"/>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+
+        <VBox spacing="5.0">
+            <children>
+                <Label text="Email *" styleClass="field-label"/>
+                <TextField fx:id="emailField" promptText="jan.kowalski@firma.pl" styleClass="app-input"/>
+            </children>
+        </VBox>
+
+        <HBox spacing="12.0">
+            <children>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Telefon" styleClass="field-label"/>
+                        <TextField fx:id="phoneField" promptText="np. 600 123 456" styleClass="app-input"/>
+                    </children>
+                </VBox>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Rola *" styleClass="field-label"/>
+                        <ComboBox fx:id="roleCombo" maxWidth="1.7976931348623157E308"/>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+
+        <HBox spacing="12.0">
+            <children>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Hasło *" styleClass="field-label"/>
+                        <PasswordField fx:id="passwordField" promptText="Hasło (min. 6 znaków)" styleClass="app-input"/>
+                    </children>
+                </VBox>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Powtórz hasło *" styleClass="field-label"/>
+                        <PasswordField fx:id="confirmPasswordField" promptText="Powtórz hasło" styleClass="app-input"/>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+
+        <Label fx:id="passwordNote" text="Przy edycji — zostaw puste żeby nie zmieniać hasła."
+               styleClass="section-subtitle"/>
+
+        <Label fx:id="errorLabel" text="" style="-fx-text-fill: #cc0000;"/>
+
+        <HBox spacing="12.0">
+            <children>
+                <Button fx:id="saveButton"   text="Zapisz"  styleClass="primary-button"/>
+                <Button fx:id="cancelButton" text="Anuluj"  styleClass="secondary-button"/>
+            </children>
+        </HBox>
+    </children>
+    <padding><Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/></padding>
+</VBox>

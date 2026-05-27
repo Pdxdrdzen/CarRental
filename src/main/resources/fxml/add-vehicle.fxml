@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="14.0"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.carrental.gui.AddVehicleController"
+      stylesheets="@app.css"
+      styleClass="screen-root">
+    <children>
+        <Label text="Dane pojazdu" styleClass="section-title" />
+
+        <HBox spacing="12.0">
+            <children>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Marka *" styleClass="field-label"/>
+                        <TextField fx:id="brandField" promptText="np. Toyota" styleClass="app-input"/>
+                    </children>
+                </VBox>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Model *" styleClass="field-label"/>
+                        <TextField fx:id="modelField" promptText="np. Corolla" styleClass="app-input"/>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+
+        <HBox spacing="12.0">
+            <children>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Rok produkcji" styleClass="field-label"/>
+                        <TextField fx:id="yearField" promptText="np. 2022" styleClass="app-input"/>
+                    </children>
+                </VBox>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Cena za godzinę (zł) *" styleClass="field-label"/>
+                        <TextField fx:id="priceField" promptText="np. 12.50" styleClass="app-input"/>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+
+        <HBox spacing="12.0">
+            <children>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Numer rejestracyjny" styleClass="field-label"/>
+                        <TextField fx:id="plateField" promptText="np. KR 12345" styleClass="app-input"/>
+                    </children>
+                </VBox>
+                <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Typ pojazdu" styleClass="field-label"/>
+                        <ComboBox fx:id="typeCombo" maxWidth="1.7976931348623157E308"/>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+
+        <VBox spacing="5.0">
+            <children>
+                <Label text="Status" styleClass="field-label"/>
+                <ComboBox fx:id="statusCombo" maxWidth="1.7976931348623157E308"/>
+            </children>
+        </VBox>
+
+        <Label fx:id="errorLabel" text="" style="-fx-text-fill: #cc0000;"/>
+
+        <HBox spacing="12.0">
+            <children>
+                <Button fx:id="saveButton"   text="Zapisz"  styleClass="primary-button"/>
+                <Button fx:id="cancelButton" text="Anuluj"  styleClass="secondary-button"/>
+            </children>
+        </HBox>
+    </children>
+    <padding><Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/></padding>
+</VBox>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="14.0"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.carrental.gui.AddServiceController"
+      stylesheets="@app.css"
+      styleClass="screen-root">
+    <children>
+        <Label text="Nowe zgłoszenie serwisowe" styleClass="section-title"/>
+
+        <VBox spacing="5.0">
+            <children>
+                <Label text="Pojazd *" styleClass="field-label"/>
+                <ComboBox fx:id="vehicleCombo" maxWidth="1.7976931348623157E308" promptText="Wybierz pojazd"/>
+            </children>
+        </VBox>
+
+        <VBox spacing="5.0">
+            <children>
+                <Label text="Opis usterki / zlecenia *" styleClass="field-label"/>
+                <TextArea fx:id="descriptionArea" promptText="Opisz szczegółowo usterkę lub zakres prac..."
+                          prefRowCount="5" styleClass="app-input" wrapText="true"/>
+            </children>
+        </VBox>
+
+        <Label fx:id="errorLabel" text="" style="-fx-text-fill: #cc0000;"/>
+
+        <HBox spacing="12.0">
+            <children>
+                <Button fx:id="saveButton"   text="Utwórz zgłoszenie" styleClass="primary-button"/>
+                <Button fx:id="cancelButton" text="Anuluj"            styleClass="secondary-button"/>
+            </children>
+        </HBox>
+    </children>
+    <padding><Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/></padding>
+</VBox>
