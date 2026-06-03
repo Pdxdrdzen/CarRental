@@ -33,6 +33,9 @@
                     </children>
                 </VBox>
 
+                <Button text="← Wróć"
+                        onAction="#goBack"
+                        styleClass="secondary-button" />
                 <Button text="Odśwież"
                         onAction="#loadVehicles"
                         styleClass="secondary-button" />

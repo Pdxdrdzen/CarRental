@@ -51,4 +51,13 @@ public class VehicleListController {
             stage.setTitle("Nowa rezerwacja");
         } catch (Exception e) { e.printStackTrace(); }
     }
+    @FXML
+    public void goBack() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main-view.fxml"));
+            Stage stage = (Stage) vehicleTable.getScene().getWindow();
+            stage.setScene(new Scene(loader.load(), 1100, 700));
+            stage.setTitle("Panel użytkownika");
+        } catch (Exception e) { e.printStackTrace(); }
+    }
 }
