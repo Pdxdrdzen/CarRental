@@ -42,6 +42,7 @@ public class AdminDashboardController {
         }
     }
 
+
     private void setupTableColumns() {
         colResId.setCellValueFactory(d -> new javafx.beans.property.SimpleStringProperty(d.getValue().id()));
         colResClient.setCellValueFactory(d -> new javafx.beans.property.SimpleStringProperty(d.getValue().client()));

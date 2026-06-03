@@ -183,7 +183,6 @@
     -fx-text-fill: white;
 }
 
-/* ComboBox — strzałka */
 .combo-box .arrow-button {
     -fx-background-color: transparent;
 }

@@ -6,6 +6,8 @@ public class SessionManager {
     private static String userRole;
     private static String userFullName;
 
+
+
     public static void login(Long id, String email, String role, String fullName) {
         userId = id; userEmail = email; userRole = role; userFullName = fullName;
     }
@@ -18,4 +20,7 @@ public class SessionManager {
     public static String getUserFullName() { return userFullName; }
     public static boolean isAdmin()        { return "ADMIN".equalsIgnoreCase(userRole); }
     public static boolean isLoggedIn()     { return userId != null; }
+    public static void clear(){
+        userId = null; userEmail = null; userRole = null; userFullName = null;
+    }
 }

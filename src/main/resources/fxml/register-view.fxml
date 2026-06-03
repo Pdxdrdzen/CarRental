@@ -84,7 +84,11 @@
         <HBox spacing="12.0">
           <children>
             <Button fx:id="registerButton" text="Zarejestruj" styleClass="primary-button" />
-            <Button fx:id="backButton" text="Wróć do logowania" styleClass="secondary-button" />
+            <Button fx:id="backButton" text="Wróć do logowania" styleClass="secondary-button"
+                    onAction="#goToLogin"
+
+            />
+
           </children>
         </HBox>
       </children>

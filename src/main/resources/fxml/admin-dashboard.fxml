@@ -36,6 +36,7 @@
                 <Button fx:id="navService"       text="🔧  Serwis"       styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
                 <Button fx:id="navReports"       text="📊  Raporty"      styleClass="secondary-button" maxWidth="1.7976931348623157E308" />
 
+
                 <Region VBox.vgrow="ALWAYS" />
 
                 <Label fx:id="loggedUserLabel" text="" styleClass="section-subtitle" />

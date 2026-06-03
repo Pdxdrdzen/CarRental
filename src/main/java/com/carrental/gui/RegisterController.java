@@ -55,15 +55,18 @@ public class RegisterController {
             } catch (Exception e) {
                 Platform.runLater(() -> { errorLabel.setText("Błąd: " + e.getMessage()); registerButton.setDisable(false); });
             }
+            goToLogin();
         }).start();
     }
 
+    @FXML
     private void goToLogin() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/admin-login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
             Stage stage = (Stage) backButton.getScene().getWindow();
             stage.setScene(new Scene(loader.load(), 500, 400));
             stage.setTitle("Logowanie");
         } catch (Exception e) { e.printStackTrace(); }
     }
+
 }

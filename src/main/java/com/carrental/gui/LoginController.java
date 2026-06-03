@@ -30,8 +30,8 @@ public class LoginController {
                     response.get("role").asText(),
                     response.get("firstName").asText("") + " " + response.get("lastName").asText("")
             );
-            String fxml  = SessionManager.isAdmin() ? "/fxml/admin-dashboard.fxml" : "/fxml/vehicles.fxml";
-            String title = SessionManager.isAdmin() ? "Panel administratora" : "Lista pojazdów";
+            String fxml  = SessionManager.isAdmin() ? "/fxml/admin-dashboard.fxml" : "/fxml/main-view.fxml";
+            String title = SessionManager.isAdmin() ? "Panel administratora" : "Panel użytkownika";
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
             Stage stage = (Stage) emailField.getScene().getWindow();
             stage.setScene(new Scene(loader.load(), 1100, 700));
