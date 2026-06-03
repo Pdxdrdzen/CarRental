@@ -48,32 +48,49 @@ public class ReservationsAdminController {
         colCost.setCellValueFactory(d    -> sp(d.getValue(), "totalCost"));
 
         colActions.setCellFactory(col -> new TableCell<>() {
+            private final Button confirmBtn = new Button("Potwierdź");
+            private final Button completeBtn = new Button("Zwróć");
             private final Button cancelBtn = new Button("Anuluj");
             {
-                cancelBtn.getStyleClass().add("secondary-button");
-                cancelBtn.setOnAction(e -> {
-                    Map<String, Object> row = getTableView().getItems().get(getIndex());
-                    Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
-                            "Anulować rezerwację #" + row.get("id") + "?", ButtonType.YES, ButtonType.NO);
-                    confirm.showAndWait().ifPresent(bt -> {
-                        if (bt == ButtonType.YES) {
-                            new Thread(() -> {
-                                try {
-                                    ApiClient.post("/reservations/" + row.get("id") + "/cancel", Map.of(), Map.class);
-                                    Platform.runLater(ReservationsAdminController.this::loadReservations);
-                                } catch (Exception ex) {
-                                    Platform.runLater(() ->
-                                            new Alert(Alert.AlertType.ERROR, "Błąd: " + ex.getMessage()).showAndWait());
-                                }
-                            }).start();
-                        }
-                    });
+                confirmBtn.getStyleClass().add("primary-button");
+                completeBtn.getStyleClass().add("secondary-button");
+                cancelBtn.getStyleClass().add("danger-button");
+
+                confirmBtn.setOnAction(e -> handleAction("confirm", "Potwierdzić rezerwację"));
+                completeBtn.setOnAction(e -> handleAction("complete", "Oznaczyć jako zwróconą"));
+                cancelBtn.setOnAction(e -> handleAction("cancel", "Anulować rezerwację"));
+            }
+
+            private void handleAction(String action, String question) {
+                Map<String, Object> row = getTableView().getItems().get(getIndex());
+                Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
+                        question + " #" + row.get("id") + "?", ButtonType.YES, ButtonType.NO);
+                confirm.showAndWait().ifPresent(bt -> {
+                    if (bt == ButtonType.YES) {
+                        new Thread(() -> {
+                            try {
+                                ApiClient.patch("/reservations/" + row.get("id") + "/" + action, Map.of(), Map.class);
+                                Platform.runLater(ReservationsAdminController.this::loadReservations);
+                            } catch (Exception ex) {
+                                Platform.runLater(() ->
+                                        new Alert(Alert.AlertType.ERROR, "Błąd: " + ex.getMessage()).showAndWait());
+                            }
+                        }).start();
+                    }
                 });
             }
+
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
-                setGraphic(empty ? null : cancelBtn);
+                if (empty) { setGraphic(null); return; }
+                String status = String.valueOf(getTableView().getItems()
+                        .get(getIndex()).getOrDefault("status", ""));
+                javafx.scene.layout.HBox box = new javafx.scene.layout.HBox(4);
+                if ("PENDING".equals(status))    box.getChildren().addAll(confirmBtn, cancelBtn);
+                if ("CONFIRMED".equals(status))  box.getChildren().addAll(completeBtn, cancelBtn);
+                if ("COMPLETED".equals(status) || "CANCELLED".equals(status)) box.getChildren().clear();
+                setGraphic(box);
             }
         });
     }

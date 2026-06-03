@@ -1,7 +1,10 @@
 package com.carrental.CarRentalApp;
 
-import com.carrental.reservation.*;
-import com.carrental.reservation.ReservationStatus;
+import com.carrental.model.reservation.*;
+import com.carrental.model.reservation.ReservationStatus;
+import com.carrental.model.user.Client;
+import com.carrental.model.vehicle.Car;
+import com.carrental.model.vehicle.VehicleStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;

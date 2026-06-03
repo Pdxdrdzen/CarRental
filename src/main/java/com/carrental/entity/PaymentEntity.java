@@ -13,6 +13,10 @@ public class PaymentEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Version
+    @Column(name = "version")
+    private Long version;
+
     @ManyToOne
     @JoinColumn(name = "reservation_id")
     private ReservationEntity reservation;
@@ -32,6 +36,9 @@ public class PaymentEntity {
     public PaymentEntity() {}
 
     // Gettery i settery
+
+    public Long getVersion() { return version; }
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

@@ -10,6 +10,10 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Version
+    @Column(name = "version")
+    private Long version;
+
     @Column(name = "first_name", nullable = false, length = 100)
     private String firstName;
 
@@ -29,6 +33,9 @@ public class UserEntity {
     private String role; // CLIENT, EMPLOYEE, ADMIN
 
     public UserEntity() {}
+
+
+    public Long getVersion() { return version; }
 
 
     public Long getId() { return id; }

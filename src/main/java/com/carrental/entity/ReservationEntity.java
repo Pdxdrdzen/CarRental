@@ -13,6 +13,10 @@ public class ReservationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Version
+    @Column(name="version")
+    private Long version;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private UserEntity client;
@@ -35,6 +39,8 @@ public class ReservationEntity {
     public ReservationEntity() {}
 
     // Gettery i settery
+
+    public Long getVersion() { return version; }
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
