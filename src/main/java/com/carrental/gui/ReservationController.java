@@ -74,21 +74,60 @@ public class ReservationController {
 
     private void handleSave() {
         errorLabel.setText("");
-        if (vehicleCombo.getValue() == null)        { errorLabel.setText("Wybierz pojazd!"); return; }
-        if (paymentMethodCombo.getValue() == null)  { errorLabel.setText("Wybierz metodę płatności!"); return; }
-        if (startDatePicker.getValue() == null || endDatePicker.getValue() == null) { errorLabel.setText("Podaj daty!"); return; }
-        if (!endDatePicker.getValue().isAfter(startDatePicker.getValue())) { errorLabel.setText("Data końca musi być po dacie startu!"); return; }
+
+        if (vehicleCombo.getValue() == null) {
+            errorLabel.setText("Wybierz pojazd!");
+            return;
+        }
+        if (paymentMethodCombo.getValue() == null) {
+            errorLabel.setText("Wybierz metodę płatności!");
+            return;
+        }
+        if (startDatePicker.getValue() == null || endDatePicker.getValue() == null) {
+            errorLabel.setText("Podaj daty!");
+            return;
+        }
+        if (!endDatePicker.getValue().isAfter(startDatePicker.getValue())) {
+            errorLabel.setText("Data końca musi być po dacie startu!");
+            return;
+        }
 
         long vehicleId = Long.parseLong(vehicleCombo.getValue().split("\\|")[0].trim());
+
+        Map<String, Object> selectedVehicle = availableVehicles.stream()
+                .filter(v -> vehicleId == ((Number) v.get("id")).longValue())
+                .findFirst()
+                .orElse(null);
+
+        if (selectedVehicle == null) {
+            errorLabel.setText("Nie znaleziono wybranego pojazdu!");
+            return;
+        }
+
+        LocalDate start = startDatePicker.getValue();
+        LocalDate end = endDatePicker.getValue();
+        long days = java.time.temporal.ChronoUnit.DAYS.between(start, end);
+
+        double pricePerHour = ((Number) selectedVehicle.get("pricePerHour")).doubleValue();
+        double totalCost = pricePerHour * days * 24;
+
         Map<String, Object> body = new HashMap<>();
-        body.put("vehicleId",     vehicleId);
-        body.put("userId",        SessionManager.getUserId());
-        body.put("startDate",     startDatePicker.getValue().toString());
-        body.put("endDate",       endDatePicker.getValue().toString());
-        body.put("paymentMethod", paymentMethodCombo.getValue());
-        body.put("notes",         notesArea.getText());
+
+        Map<String, Object> client = new HashMap<>();
+        client.put("id", SessionManager.getUserId());
+
+        Map<String, Object> vehicle = new HashMap<>();
+        vehicle.put("id", vehicleId);
+
+        body.put("client", client);
+        body.put("vehicle", vehicle);
+        body.put("startDate", start.atStartOfDay().toString());
+        body.put("endDate", end.atStartOfDay().toString());
+        body.put("status", "PENDING");
+        body.put("totalCost", totalCost);
 
         saveButton.setDisable(true);
+
         new Thread(() -> {
             try {
                 ApiClient.post("/reservations", body, Map.class);
@@ -97,7 +136,10 @@ public class ReservationController {
                     goBack();
                 });
             } catch (Exception e) {
-                Platform.runLater(() -> { errorLabel.setText("Błąd zapisu: " + e.getMessage()); saveButton.setDisable(false); });
+                Platform.runLater(() -> {
+                    errorLabel.setText("Błąd zapisu: " + e.getMessage());
+                    saveButton.setDisable(false);
+                });
             }
         }).start();
     }

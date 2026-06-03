@@ -148,6 +148,91 @@
     -fx-padding: 10 16 10 16;
     -fx-cursor: hand;
 }
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 0 4 0 4;
+}
+
+.combo-box .text-input {
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #0d1a30;
+    -fx-border-color: rgba(88, 216, 255, 0.30);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #dff6ff;
+    -fx-padding: 8 12 8 12;
+    -fx-font-size: 13px;
+}
+
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: rgba(88, 216, 255, 0.12);
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-view .list-cell:selected {
+    -fx-background-color: rgba(55, 110, 255, 0.35);
+    -fx-text-fill: white;
+}
+
+/* ComboBox — strzałka */
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow-button .arrow {
+    -fx-background-color: #8d99ae;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.date-picker .arrow-button .icon {
+    -fx-background-color: #8d99ae;
+}
+
+.date-picker-popup {
+    -fx-background-color: #0d1a30;
+    -fx-border-color: rgba(88, 216, 255, 0.30);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.date-picker-popup .month-year-pane {
+    -fx-background-color: #111e38;
+}
+
+.date-picker-popup .day-name-cell,
+.date-picker-popup .day-cell {
+    -fx-text-fill: #dff6ff;
+}
+
+.date-picker-popup .day-cell:hover {
+    -fx-background-color: rgba(88, 216, 255, 0.15);
+}
+
+.date-picker-popup .selected {
+    -fx-background-color: rgba(55, 110, 255, 0.65);
+    -fx-text-fill: white;
+}
+
+.date-picker-popup .spinner .button {
+    -fx-background-color: transparent;
+}
+
+.date-picker-popup .spinner .label {
+    -fx-text-fill: #dff6ff;
+    -fx-font-weight: 700;
+}
 
 .secondary-button:hover {
     -fx-background-color: rgba(25, 38, 67, 0.98);
@@ -182,14 +267,45 @@
 
 .table-row-cell {
     -fx-background-color: rgba(7, 12, 24, 0.96);
-    -fx-text-fill: #edf7ff;
-    -fx-border-color: transparent transparent rgba(255,255,255,0.04) transparent;
+    -fx-border-color: transparent transparent rgba(255,255,255,0.05) transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-cell-size: 40px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: rgba(12, 20, 38, 0.96);
 }
 
 .table-row-cell:filled:hover {
-    -fx-background-color: rgba(16, 25, 45, 1);
+    -fx-background-color: rgba(24, 48, 82, 0.95);
 }
 
 .table-row-cell:selected {
-    -fx-background-color: rgba(22, 57, 91, 0.95);
+    -fx-background-color: rgba(22, 57, 110, 0.95);
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #dff6ff;
+    -fx-font-size: 13px;
+    -fx-padding: 0 10 0 10;
+    -fx-border-color: transparent;
+    -fx-alignment: CENTER-LEFT;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: #ffffff;
+}
+
+.table-row-cell:filled:hover .table-cell {
+    -fx-text-fill: #ffffff;
+}
+
+.table-row-cell:empty {
+    -fx-background-color: rgba(7, 12, 24, 0.96);
+    -fx-border-color: transparent;
+}
+
+.table-row-cell:empty .table-cell {
+    -fx-text-fill: transparent;
+    -fx-border-color: transparent;
 }
